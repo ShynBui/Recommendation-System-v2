@@ -1,0 +1,107 @@
+{% extends 'admin/base.html'%}
+
+{% block body %}
+
+<h1 class="text-center text-danger">Trang thanh toán</h1>
+<br>
+<h1>Nhân viên: {{user}}</h1>
+
+
+
+<div class="ml-1 row">
+
+    <br>
+
+    <form>
+        <div class="form-group">
+            <input type="text" class="form-control" name="value" placeholder="Nhập id...">
+        </div>
+        <input type="submit" value="Tìm" class="btn btn-info">
+    </form>
+
+    <br>
+</div>
+
+{% if receipt %}
+<br>
+<div class="row">
+
+    <div class="col-md-6 col-xs-12"> <h4> Họ tên khách hàng: {{name}} </h4> </div>
+    <div class="col-md-6 col-xs-12 text-right"> <h4> Ngày lập hóa đơn: {{date}} </h4></div>
+</div>
+
+<table class = "table table-light table-bordered table-hover">
+    <thead class="thead-dark">
+        <tr>
+            <th>
+                Sách
+            </th>
+            <th>
+                Thể loại
+            </th>
+            <th>
+                Số lượng
+            </th>
+            <th>
+                Đơn giá
+            </th>
+        </tr>
+    </thead>
+    {% for c in receipt %}
+    <tr id = "product{{c.id}}">
+        <td>{{c[0]}}</td>
+        <td>{{c[1]}}</td>
+        <td>{{c[2]}}</td>
+        <td>{{c[3]}}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+<div class="row ">
+
+    <div class="col-md-10 col-xs-12"> <h4> Tổng số tiền {{total}} </h4> </div>
+
+    <form class="col-md-2 col-xs-12 float-right">
+        <div class="form-group d-none">
+            <input type="text" class="form-control" value="{{id}}" name="payment" placeholder="Nhập id...">
+        </div>
+        <input class="btn btn-success" type="submit" value="Thanh toán" style = "margin-bottom: 15px" />
+    </form>
+</div>
+{%else%}
+<br>
+<h6 class="text-danger text-center">Không có mã hóa đơn phù hợp</h6>
+
+<br>
+
+{%if out_date%}
+<h3 class=".text-secondary text-center">Bảng danh sách hóa đơn quá hạn</h3>
+<table class = "table table-light table-bordered table-hover">
+    <thead class="thead-dark">
+        <tr>
+            <th>
+                Mã hóa đơn
+            </th>
+            <th>
+                Ngày lập
+            </th>
+            <th>
+                Trạng thái thanh toán
+            </th>
+        </tr>
+    </thead>
+    {% for c in out_date %}
+    <tr>
+        <td>{{c.id}}</td>
+        <td>{{c.created_date}}</td>
+        <td class="text-danger">{{c.payment}}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+{%endif%}
+
+{%endif%}
+
+
+{%endblock%}

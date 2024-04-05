@@ -1,0 +1,209 @@
+{% extends 'admin/base.html'%}
+
+{% block body %}
+{% if current_user.is_authenticated %}
+{% block css %}
+
+{%endblock%}
+<!--style tuyet roi-->
+<style>
+
+    @-webkit-keyframes snowflakes-fall {
+    0% {top:-10%}
+    100% {top:100%}
+  }
+  @-webkit-keyframes snowflakes-shake {
+    0%,100% {-webkit-transform:translateX(0);transform:translateX(0)}
+    50% {-webkit-transform:translateX(80px);transform:translateX(80px)}
+  }
+  @keyframes snowflakes-fall {
+    0% {top:-10%}
+    100% {top:100%}
+  }
+  @keyframes snowflakes-shake {
+    0%,100%{ transform:translateX(0)}
+    50% {transform:translateX(80px)}
+  }
+  .snowflake {
+    color: #fff;
+    font-size: 1em;
+    font-family: Arial, sans-serif;
+    text-shadow: 0 0 5px #000;
+    position:fixed;
+    top:-10%;
+    z-index:9999;
+    -webkit-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    user-select:none;
+    cursor:default;
+    cursor:default;
+    -webkit-animation-name:snowflakes-fall,snowflakes-shake;
+    -webkit-animation-duration:10s,3s;
+    -webkit-animation-timing-function:linear,ease-in-out;
+    -webkit-animation-iteration-count:infinite,infinite;
+    -webkit-animation-play-state:running,running;
+    animation-name:snowflakes-fall,snowflakes-shake;
+    animation-duration:10s,3s;
+    animation-timing-function:linear,ease-in-out;
+    animation-iteration-count:infinite,infinite;
+    animation-play-state:running,running;
+  }
+  .snowflake:nth-of-type(0){
+    left:1%;-webkit-animation-delay:0s,0s;animation-delay:0s,0s
+  }
+  .snowflake:nth-of-type(1){
+    left:10%;-webkit-animation-delay:1s,1s;animation-delay:1s,1s
+  }
+  .snowflake:nth-of-type(2){
+    left:20%;-webkit-animation-delay:6s,.5s;animation-delay:6s,.5s
+  }
+  .snowflake:nth-of-type(3){
+    left:30%;-webkit-animation-delay:4s,2s;animation-delay:4s,2s
+  }
+  .snowflake:nth-of-type(4){
+    left:40%;-webkit-animation-delay:2s,2s;animation-delay:2s,2s
+  }
+  .snowflake:nth-of-type(5){
+    left:50%;-webkit-animation-delay:8s,3s;animation-delay:8s,3s
+  }
+  .snowflake:nth-of-type(6){
+    left:60%;-webkit-animation-delay:6s,2s;animation-delay:6s,2s
+  }
+  .snowflake:nth-of-type(7){
+    left:70%;-webkit-animation-delay:2.5s,1s;animation-delay:2.5s,1s
+  }
+  .snowflake:nth-of-type(8){
+    left:80%;-webkit-animation-delay:1s,0s;animation-delay:1s,0s
+  }
+  .snowflake:nth-of-type(9){
+    left:90%;-webkit-animation-delay:3s,1.5s;animation-delay:3s,1.5s
+  }
+  .snowflake:nth-of-type(10){
+    left:25%;-webkit-animation-delay:2s,0s;animation-delay:2s,0s
+  }
+  .snowflake:nth-of-type(11){
+    left:65%;-webkit-animation-delay:4s,2.5s;animation-delay:4s,2.5s
+  }
+
+</style>
+<h1>
+    Welcome {{current_user.name}} To admin web
+</h1>
+<div class="snowflakes" aria-hidden="true" >
+    <div class="snowflake">❅</div>
+    <div class="snowflake">❆</div>
+    <div class="snowflake">❅</div>
+    <div class="snowflake">❆</div>
+    <div class="snowflake">❅</div>
+    <div class="snowflake">❆</div>
+    <div class="snowflake">❅</div>
+    <div class="snowflake">❆</div>
+    <div class="snowflake">❅</div>
+    <div class="snowflake">❆</div>
+    <div class="snowflake">❅</div>
+    <div class="snowflake">❆</div>
+
+</div>
+<div class="row">
+    <div class="col-md-6 col-xs-12">
+        <table class="table-sm table table-striped table-dark table-bordered table-hover">
+            <tr>
+                <th>
+                    Mã danh mục
+                </th>
+                <th>
+                    Tên danh mục
+                </th>
+                <th>
+                    Số lượng sản phẩm
+                </th>
+            </tr>
+            {% for s in stats%}
+            <tr>
+                <td> {{s[0]}}</td>
+                <td> {{s[1]}}</td>
+                <td> {{s[2]}}</td>
+
+            </tr>
+            {%endfor%}
+        </table>
+    </div>
+    <div class="col-md-6 col-xs-12">
+        <div>
+            <canvas id="myChart"></canvas>
+        </div>
+    </div>
+</div>
+
+
+{%else%}
+<div class="container" style="background-image: url('https://mdbootstrap.com/img/Photos/Horizontal/Nature/full page/img(11).webp');">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <h2 class="text-center text-dark mt-5 " style=" font-size: 40px;
+     font-weight: 900;">Login Form</h2>
+            <div class="text-center mb-5 text-dark">Wibu - Admin</div>
+            <div class="card my-5">
+
+                <form class="card-body cardbody-color p-lg-5" action="{{url_for('signin_admin')}}" method="post">
+
+                    <div class="text-center">
+                        <img src="https://cdn.pixabay.com/photo/2016/03/31/19/56/avatar-1295397__340.png"
+                             class="img-fluid profile-image-pic img-thumbnail rounded-circle my-3"
+                             width="200px" alt="profile">
+                    </div>
+
+                    <div class="mb-3">
+                        <input type="text" class="form-control" id="username" aria-describedby="emailHelp"
+                               placeholder="User Name" name="username">
+                    </div>
+                    <div class="mb-3">
+                        <input type="password" class="form-control" id="password" placeholder="password"
+                               name="password">
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-color px-5 mb-5 w-100 loginn" style="color:#fff;background-color:#0e1c36">Login</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+{%endif%}
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+
+  let lables = [], info = []
+
+  {% for s in stats %}
+        lables.push('{{s[1]}}')
+        info.push('{{s[2]}}')
+  {%endfor%}
+  const ctx = document.getElementById('myChart');
+
+  new Chart(ctx, {
+    type: 'radar',
+    data: {
+      labels: lables,
+      datasets: [{
+        label: 'Thong ke san pham',
+        data: info,
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+</script>
+
+{%endblock%}
+
+

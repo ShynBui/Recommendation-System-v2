@@ -1,0 +1,192 @@
+{% extends 'admin/base.html'%}
+
+{% block body %}
+<h1 class="text-center text-secondary">Thống kê doanh thu</h1>
+
+
+
+
+<div class="row">
+    {% if cate_stats %}
+        <h3 class="text-center text-danger">Thống kê doanh thu theo loại sản phẩm tháng {{total_price_month[0][0]}}</h3>
+    {%else%}
+    <h3 class="text-center text-danger">Thống kê doanh thu theo loại sản phẩm </h3>
+    {%endif%}
+
+    <div class="col-md-6 col-xs-12 border border-secondary">
+        {% if cate_stats %}
+        <table class="table table-light table-bordered table-hover">
+            <thead class="thead-dark">
+            <tr>
+                <th>
+                    Loại sản phẩm
+                </th>
+                <th>
+                    Doanh thu
+                </th>
+                <th>
+                    Số lượng mua
+                </th>
+                <th>
+                    Tỉ lệ doanh thu(%)
+                </th>
+            </tr>
+            </thead>
+            {% for s in cate_stats%}
+            <tr>
+                <td> {{s[0]}}</td>
+                <td> {{s[1]}}</td>
+                <td> {{s[2]}}</td>
+                <td> {{s[3]}}</td>
+            </tr>
+            {%endfor%}
+        </table>
+
+        <h3 class="d-block text-center">Tổng doanh thu: {{total_price_month[0][1]}}</h3>
+        {%endif%}
+    </div>
+
+    <div class="col-md-6 col-xs-12 border border-secondary">
+
+        <form>
+            <div class = "form-group">
+                <input type = "number" min = "1" max = "12" class="form-control" name="month" placeholder="Nhập tháng...">
+            </div>
+            <input type="submit" value="Thong ke" class="btn btn-info">
+        </form>
+        <div>
+            <canvas id="myChart3"></canvas>
+        </div>
+    </div>
+</div>
+
+<br>
+<br>
+<br>
+
+<div class="row">
+    {% if product_stats %}
+        <h1 class="text-center text-danger">Thống kê tần suất theo sản phẩm tháng {{total_product_month[0][0]}}</h1>
+    {%else%}
+    <h1 class="text-center text-danger">Thống kê tần suất theo phẩm </h1>
+    {%endif%}
+
+    <div class="col-md-6 col-xs-12 border border-secondary">
+        {% if product_stats %}
+
+        <table class="table-sm table table-striped table-dark table-bordered table-hover">
+            <thead class="thead-light">
+            <tr>
+                <th>
+                    Sản phẩm
+                </th>
+                <th>
+                    Loại sản phẩm
+                </th>
+                <th>
+                    Số lượng mua
+                </th>
+                <th>
+                    Tỉ lệ mua(%)
+                </th>
+            </tr>
+            </thead>
+            {% for s in product_stats%}
+            <tr>
+                <td> {{s[0]}}</td>
+                <td> {{s[1]}}</td>
+                <td> {{s[2]}}</td>
+                <td> {{s[3]}}</td>
+            </tr>
+            {%endfor%}
+        </table>
+
+        <h3 class="d-block text-center">Tổng lượt mua: {{total_product_month[0][1]}}</h3>
+        {%endif%}
+    </div>
+
+    <div class="col-md-6 col-xs-12 border border-secondary">
+
+        <form>
+            <div class = "form-group">
+                <input type = "number" min = "1" max = "12" class="form-control" name="month2" placeholder="Nhập tháng...">
+            </div>
+            <input type="submit" value="Thong ke" class="btn btn-info">
+        </form>
+        <div>
+            <canvas id="myChart4"></canvas>
+        </div>
+    </div>
+</div>
+
+<br>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+
+
+  let lable1 = [], data1 = []
+
+  {% for s in cate_stats %}
+        lable1.push('{{s[0]}}')
+        data1.push('{{s[1]}}')
+  {%endfor%}
+
+  const ctx1 = document.getElementById('myChart3');
+
+  new Chart(ctx1, {
+    type: 'doughnut',
+    data: {
+      labels: lable1,
+      datasets: [{
+        label: 'Thống kê doanh thu loại sản phẩm theo tháng',
+        data: data1,
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+
+
+
+
+  let lable2 = [], data2 = []
+
+  {% for s in product_stats %}
+        lable2.push('{{s[0]}}')
+        data2.push('{{s[2]}}')
+  {%endfor%}
+
+  const ctx2 = document.getElementById('myChart4');
+
+  new Chart(ctx2, {
+    type: 'polarArea',
+    data: {
+      labels: lable2,
+      datasets: [{
+        label: 'Thống kê số lượng mua theo sản phẩm theo tháng',
+        data: data2,
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+
+
+
+
+
+</script>
+{%endblock%}

@@ -1,0 +1,86 @@
+{% extends 'layout/base.html' %}
+
+{% block title %} Trang chu {% endblock %}
+{% block css %}
+<link href="{{ url_for('static', filename='css/register.css') }}"
+      rel="stylesheet"/>
+
+{%endblock%}
+
+{% block content %}
+
+<br>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <form>
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="Search by description"
+                           aria-label="Search by description"
+                           aria-describedby="search-button" name="des">
+                    <button type="submit" class="btn btn-primary" id="search-button">🔍<i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<br>
+<div class="container">
+
+    {% if products %}
+    <div class="row">
+        {% for p in products %}
+        <div class="col-md-3 col-sm-12" style="padding:1rem;">
+            <div class="card">
+                <img class="card-img-top" src="{{ p.image }}" alt="{{ p.name }}" height="380px">
+                <div class="card-body">
+                    <h4 style="font-size:12px;" class="card-title">{{ p.name }}</h4>
+                    {% if p.price %}
+                    <p class="card-text">{{ "{:,.1f}".format(p.price) }} VNĐ</p>
+                    {% else %}
+                    <p class="card-text">Giá không khả dụng</p>
+                    {% endif %}
+
+                    <a href="{{url_for('product_detail', product_id=p.id)}}" class="btn btn-primary">Xem chi tiết</a>
+                    <a href="javascript:;" onclick="addToCart({{p.id}}, '{{p.name}}', {{p.price}})"
+                       class="btn btn-danger" onclick="addToCart({{p.id}}, '{{p.name}}', {{p.price}})">Đặt hàng</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <h4 class="text-danger">Không có sản phầm nào!</h4>
+    {% endif %}
+
+    <ul class="pagination d-flex justify-content-center">
+        {%if page_now != 1%}
+        <li class="page-item"><a class="page-link"
+                                 href="{{url_for('product_list', page= page_now - 1, category_id=cate_id)}}">◀️</a></li>
+        {%endif%}
+        {% for i in range(start_page, end_page + 1) %}
+        {%if i == page_now%}
+        <li style="background-color: #f8f9fa" class="page-item"><a style="background-color: #f8f9fa" class="page-link"
+                                 href="{{url_for('product_list', page=i, category_id=cate_id)}}"> <u> {{i}} </u></a></li>
+        {%else%}
+        <li class="page-item"><a class="page-link"
+                                 href="{{url_for('product_list', page=i, category_id=cate_id)}}">{{i}}</a></li>
+        {%endif%}
+        {% endfor %}
+
+        {%if page_now != pages%}
+        <li class="page-item"><a class="page-link"
+                                 href="{{url_for('product_list', page= page_now + 1, category_id=cate_id)}}">▶️️</a></li>
+        {%endif%}
+
+    </ul>
+</div>
+
+
+<!--tuyet roi-->
+
+
+{% endblock %}

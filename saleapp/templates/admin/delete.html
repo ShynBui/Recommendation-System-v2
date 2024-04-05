@@ -1,0 +1,111 @@
+{% extends 'admin/base.html'%}
+
+{% block body %}
+<h1 class="text-center .text-secondary">Trang xóa sản phẩm</h1>
+
+<h3 class="text-danger">{{quote}}</h3>
+
+<div class="ml-1 row">
+
+    <br>
+
+    <form>
+        <div class="form-group">
+            <input type="text" class="form-control" name="value" placeholder="Nhập id...">
+        </div>
+        <input type="submit" value="Tìm" class="btn btn-info">
+    </form>
+
+
+</div>
+<br>
+
+{%if product%}
+<table class="table table-striped table-dark table-bordered table-hover ">
+    <tr>
+        <th>
+            Mã sản phẩm
+        </th>
+        <th>
+            Tên sản phẩm
+        </th>
+        <th>
+            Loại sản phẩm
+        </th>
+        <th>
+            Số lượng
+        </th>
+        <th>
+            Giá
+        </th>
+        <th>
+
+        </th>
+    </tr>
+
+
+    <tr>
+        <td>{{product[0]}}</td>
+        <td>{{product[1]}}</td>
+        <td>{{product[2]}}</td>
+        <td>{{product[3]}}</td>
+        <td>{{product[4]}}</td>
+        <td>
+            <form class="col-md-2 col-xs-12 float-right">
+                <div class="form-group d-none">
+                    <input type="text" class="form-control" value="{{product[0]}}" name="payment" placeholder="Nhập id...">
+                </div>
+                <input type="submit" value="Xóa" class="btn btn-danger"/>
+            </form>
+        </td>
+    </tr>
+
+</table>
+{%else%}
+<table class="table table-striped table-dark table-bordered table-hover ">
+    <tr>
+        <th>
+            Mã sản phẩm
+        </th>
+        <th>
+            Tên sản phẩm
+        </th>
+        <th>
+            Loại sản phẩm
+        </th>
+        <th>
+            Số lượng
+        </th>
+        <th>
+            Giá
+        </th>
+        <th>
+
+        </th>
+    </tr>
+
+    {% for pro in products %}
+    <tr>
+        <td>{{pro[0]}}</td>
+        <td>{{pro[1]}}</td>
+        <td>{{pro[2]}}</td>
+        <td>{{pro[3]}}</td>
+        <td>{{pro[4]}}</td>
+        <td>
+            <form class="col-md-2 col-xs-12 float-right">
+                <div class="form-group d-none">
+                    <input type="text" class="form-control" value="{{pro[0]}}" name="payment" placeholder="Nhập id...">
+                </div>
+                <input type="submit" value="Xóa" class="btn btn-danger"/>
+            </form>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{%endif%}
+{%if pay%}
+
+
+
+{%endif%}
+{%endblock%}

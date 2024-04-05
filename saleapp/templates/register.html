@@ -1,0 +1,128 @@
+{% extends 'layout/base.html' %}
+
+{% block title %} Đăng ký {% endblock %}
+
+{% block css %}
+    <link href="{{ url_for('static', filename='css/register.css') }}"
+          rel="stylesheet"/>
+
+{%endblock%}
+
+
+{% block content %}
+<h1 class="d-flex justify-content-center text-danger"> Đăng ký</h1>
+
+{% if err_msg != ''%}
+<div class="alert alert-danger">
+    <h4>{{err_msg}}</h4>
+</div>
+{%endif%}
+<form method="post" enctype="multipart/form-data" action="/register">
+    <div class="form-floating mb-3 mt-3">
+        <input type="text" class="form-control" required id="name" placeholder="Nhập họ tên" name="name">
+        <label for="name">Họ tên</label>
+    </div>
+    <div class="form-floating mb-3 mt-3">
+        <input type="mail" class="form-control" required id="email" placeholder="Nhập Email" name="email">
+        <label for="email">Email</label>
+    </div>
+
+    <div class="form-floating mb-3 mt-3">
+        <input type="text" class="form-control" required id="username" placeholder="Nhập tên đăng nhập" name="username">
+        <label for="username">Tên đăng nhập</label>
+    </div>
+
+    <div class="form-floating mt-3 mb-3">
+        <input type="password" class="form-control" required id="password" placeholder="Nhập mật khẩu" name="password">
+        <label for="password">Mật khẩu</label>
+    </div>
+
+    <div class="form-floating mt-3 mb-3">
+        <input type="password" class="form-control" required id="confirm" placeholder="Nhập xác nhận mật khẩu"
+               name="confirm">
+        <label for="confirm">Xác nhận mật khẩu</label>
+    </div>
+
+    <div class="form-floating mt-3 mb-3">
+        <input type="file" class="form-control" id="avatar" name="avatar">
+        <label for="avatar">Ảnh đại diện</label>
+    </div>
+    <div class="form-floating mt-3 mb-3">
+        <input type="text" class="form-control" id="diachi" name="diachi" required>
+        <label for="diachi">Địa chỉ</label>
+    </div>
+    <div>
+        <input type="submit" value="Đăng ký" class="btn btn-danger"/>
+    </div>
+</form>
+<br>
+<br>
+
+
+<!--
+Author: Colorlib
+Author URL: https://colorlib.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+<!--<!DOCTYPE html>-->
+<!--<html>-->
+<!--<head>-->
+<!--<title>Creative Colorlib SignUp Form</title>-->
+<!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
+<!--<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />-->
+<!--<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>-->
+<!--&lt;!&ndash; Custom Theme files &ndash;&gt;-->
+<!--<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />-->
+<!--&lt;!&ndash; //Custom Theme files &ndash;&gt;-->
+<!--&lt;!&ndash; web font &ndash;&gt;-->
+<!--<link href="//fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i" rel="stylesheet">-->
+<!--&lt;!&ndash; //web font &ndash;&gt;-->
+<!--</head>-->
+<!--<body>-->
+<!--	&lt;!&ndash; main &ndash;&gt;-->
+<!--	<div class="main-w3layouts wrapper">-->
+<!--		<h1>Đăng ký</h1>-->
+<!--		<div class="main-agileinfo">-->
+<!--			<div class="agileits-top">-->
+<!--				<form action="#" method="post">-->
+<!--					<input class="text" type="text" name="username" placeholder="username" required="">-->
+<!--					<input class="text email" type="email" name="email" placeholder="Email" required="">-->
+<!--					<input class="text" type="password" name="password" placeholder="Password" required="">-->
+<!--					<input class="text w3lpass" type="password" name="confirm" placeholder="Confirm Password" required="">-->
+<!--					<input type="file" class="text form-control" id="avatar" name="avatar">-->
+<!--					<input type="file" class="text form-control" id="avatar" name="avatar">-->
+<!--					<div class="wthree-text">-->
+<!--						<label class="anim">-->
+<!--							<input type="checkbox" class="checkbox" required="">-->
+<!--							<span>I Agree To The Terms & Conditions</span>-->
+<!--						</label>-->
+<!--						<div class="clear"> </div>-->
+<!--					</div>-->
+<!--					<input type="submit" value="SIGNUP">-->
+<!--				</form>-->
+<!--				<p>Don't have an Account? <a href="#"> Login Now!</a></p>-->
+<!--			</div>-->
+<!--		</div>-->
+<!--		&lt;!&ndash; copyright &ndash;&gt;-->
+<!--		<div class="colorlibcopy-agile">-->
+<!--			<p>© 2018 Colorlib Signup Form. All rights reserved | Design by <a href="https://colorlib.com/" target="_blank">Colorlib</a></p>-->
+<!--		</div>-->
+<!--		&lt;!&ndash; //copyright &ndash;&gt;-->
+<!--		<ul class="colorlib-bubbles">-->
+<!--			<li></li>-->
+<!--			<li></li>-->
+<!--			<li></li>-->
+<!--			<li></li>-->
+<!--			<li></li>-->
+<!--			<li></li>-->
+<!--			<li></li>-->
+<!--			<li></li>-->
+<!--			<li></li>-->
+<!--			<li></li>-->
+<!--		</ul>-->
+<!--	</div>-->
+<!--	&lt;!&ndash; //main &ndash;&gt;-->
+</body>
+</html>
+{% endblock %}

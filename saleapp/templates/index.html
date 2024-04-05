@@ -1,0 +1,209 @@
+{% extends 'layout/base.html' %}
+
+{% block title %} Trang chu {% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="styleHoang.css"/>
+{% block js %}
+<script src="{{ url_for('static', filename='js/jsHoang.js') }}"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+
+{%endblock%}
+{%endblock%}
+
+{% block header %}
+<nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark justify-content-between">
+    <a class="navbar-brand" href="{{url_for('home')}}">
+        <img src="../static/image/wibu.png" width="30" height="30" class="d-inline-block align-top" alt="">
+        Shopbee
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+                <a class="nav-link" href="{{url_for('product_list')}}">Trang chủ <span class="sr-only"></span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{url_for('user_signin')}}">Đăng nhập</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{url_for('user_register')}}">Đăng ký</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">
+                    Thể loại
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    {% for cate in categories %}
+                    <a class="dropdown-item" href="\products?category_id={{cate.id}}">{{cate.name}}</a>
+                    {% endfor %}
+                </div>
+            </li>
+        </ul>
+    </div>
+
+
+</nav>
+{% endblock %}
+
+{% block content %}
+<!--tuyet roi-->
+
+
+<!--on banner-->
+<!-- Carousel -->
+<div id="demo" class="carousel slide banner" data-bs-ride="carousel">
+
+    <!-- Indicators/dots -->
+    <div class="carousel-indicators">
+        <button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active"></button>
+        <button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
+        <button type="button" data-bs-target="#demo" data-bs-slide-to="2"></button>
+    </div>
+
+    <!-- The slideshow/carousel -->
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="https://thaihabooks.com/wp-content/uploads/2022/11/Banner-Thang-11-851x475-UP-WEB.jpg"
+                 alt="Los Angeles" class="d-block w-100 img">
+        </div>
+        <div class="carousel-item">
+            <img src="https://thietkehosonangluc.edu.vn/uploads/images/thiet-ke-do-hoa-khac/banner-sach/1.png"
+                 class="d-block w-100 img">
+        </div>
+        <div class="carousel-item">
+            <img src="https://c4.wallpaperflare.com/wallpaper/295/163/719/anime-anime-boys-picture-in-picture-kimetsu-no-yaiba-kamado-tanjir%C5%8D-hd-wallpaper-preview.jpg"
+                 alt="New York" class="d-block w-100 img">
+        </div>
+    </div>
+
+    <!-- Left and right controls/icons -->
+    <button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next">
+        <span class="carousel-control-next-icon"></span>
+    </button>
+</div>
+
+
+<div class="main2">
+    <h3 class="aboutus h3">Sàn thương mại điện tử Shopbee</h3>
+
+</div>
+<div class="main3">
+    <p class="page">Chuyên cung cấp đầy đủ các loại sản phẩm.</p>
+    <p class="page2">Chúng tôi luôn đề cao chất lượng và dịch vụ hàng đầu, mang đến cho khách hàng trải nghiệm tốt
+        nhất.</p>
+</div>
+
+<!--4 anh-->
+<div class="imgfour">
+    <figure class="snip0019">
+        <img src="https://toigingiuvedep.vn/wp-content/uploads/2021/11/hinh-anh-cuon-sach-mo-ra-va-hoa-kho.jpg"/>
+        <figcaption>
+            <div><h2>Bạn cần <span>Trang Phục</span></h2></div>
+            <div><p>Chúng tôi cho bạn như đấy.</p></div>
+            <a href="#"></a>
+        </figcaption>
+    </figure>
+    <figure class="snip0019">
+        <img src="https://png.pngtree.com/png-clipart/20190617/original/pngtree-fathers-day-book-pile-cartoon-hand-drawn-cute-and-simple-anime-png-image_3858015.jpg"/>
+        <figcaption>
+            <div><h2>Sàn thương mại<span>Shopbee</span></h2></div>
+            <div><p>Chuyên cung cấp những mặt hàng sách mới và chất lượng dành cho bạn.</p></div>
+            <a href="#"></a>
+        </figcaption>
+    </figure>
+    <figure class="snip0019">
+        <img src="https://farm8.staticflickr.com/7319/27516670422_2c0f3b6af8_o.jpg" alt="sample13"/>
+        <figcaption>
+            <div><h2>Đảm bảo <span>trải nghiệm</span> khách hàng</span> </h2></div>
+            <div><p>To the machines and go play outside.</p></div>
+            <a href="#"></a>
+        </figcaption>
+    </figure>
+</div>
+
+
+<!--background chuyen canh-->
+<div class="boxx">
+    <div id="box_left">
+        <h3>SỨ MỆNH Shopbee</h3>
+        <p>Mỗi shop quần áo đều mang trong mình một sứ mệnh, không chỉ là kinh doanh mà còn là cầu nối giữa thế giới thời trang và phong cách cá nhân của mỗi người. Sứ mệnh của chúng tôi là mang đến cho khách hàng không chỉ những bộ trang phục chất lượng, mà còn là những giải pháp thời trang toàn diện, giúp họ tự tin thể hiện cá tính và phong cách sống qua từng bộ trang phục.</p>
+
+    </div>
+    <div id="box_right">
+        <h3>TẦM NHÌN </h3>
+        <p>Chúng tôi khát khao trở thành người bạn đồng hành đáng tin cậy của mọi khách hàng trên hành trình chinh phục phong cách thời trang của mình. Tầm nhìn của chúng tôi là mang lại sự tự tin, cá tính và phong cách cho mỗi người, từ những bộ trang phục hàng ngày đến những trang phục đặc biệt dành cho những dịp quan trọng</p>
+
+    </div>
+    <div id="box_middle">
+        <h3>Dịch vụ</h3>
+        <p>Tại shop quần áo của chúng tôi, dịch vụ khách hàng không chỉ dừng lại ở việc bán hàng. Chúng tôi tự hào mang đến một trải nghiệm mua sắm toàn diện, từ lúc khách hàng bước vào cửa hàng cho đến khi họ rời đi với những sản phẩm ưng ý. Mỗi khách hàng khi đến với chúng tôi đều được đón tiếp bằng sự chân thành và thái độ phục vụ chuyên nghiệp, đảm bảo rằng mọi nhu cầu và mong muốn của họ được lắng nghe và đáp ứng một cách tốt nhất.</p>
+
+    </div>
+</div>
+
+{%if current_user.is_authenticated %}
+<div class="badbox">
+    {%for row in products%}
+    <a href="{{url_for('product_detail', product_id= row.id)}}">
+        <figure class="fg">
+            <img class="img3d"
+                 src="{{row.image}}"
+                 alt="Portfolio Item">
+            <figcaption class="fgcaption">
+                <h3 style="font-size:10px;">{{row.name}}</h3>
+            </figcaption>
+        </figure>
+    </a>
+    {%endfor%}
+{%else%}
+
+<div class="badbox">
+    {%for pro in products%}
+    <a href="{{url_for('product_detail', product_id= pro.id)}}">
+        <figure class="fg">
+            <img class="img3d"
+                 src="{{pro.image}}"
+                 alt="Portfolio Item">
+            <figcaption class="fgcaption">
+                <h3 style="font-size:10px;">{{pro.name}}</h3>
+            </figcaption>
+        </figure>
+    </a>
+    {%endfor%}
+
+{%endif%}
+
+    <!--<figure>-->
+    <!--    <img src="http://lorempixel.com/192/96/sports/7" alt="Portfolio Item">-->
+    <!--    <figcaption>-->
+    <!--        <h3>Title</h3>-->
+    <!--        <p>Description.</p>-->
+    <!--    </figcaption>-->
+    <!--</figure>-->
+
+    <!--<figure>-->
+    <!--    <img src="http://lorempixel.com/192/96/sports/8" alt="Portfolio Item">-->
+    <!--    <figcaption>-->
+    <!--        <h3>Title</h3>-->
+    <!--        <p>Description.</p>-->
+    <!--    </figcaption>-->
+    <!--</figure>-->
+
+    ​
+</div>
+
+
+{% endblock %}
+
+

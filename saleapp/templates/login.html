@@ -1,0 +1,127 @@
+{% extends 'layout/base.html' %}
+
+{% block title %} Dang nhap nguoi dung {% endblock %}
+
+{% block css %}
+<link href="{{ url_for('static', filename='css/login.css') }}"
+      rel="stylesheet"/>
+{%endblock%}
+
+{% block content %}
+<!--<h1 class="d-flex justify-content-center text-danger"> Đăng nhập</h1>-->
+
+{% if err_msg != ''%}
+<div class="alert alert-danger">
+    <h4>{{err_msg}}</h4>
+</div>
+{%endif%}
+
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <h2 class="text-center text-dark mt-5 loginn">Login Form</h2>
+            <div class="text-center mb-5 text-dark"></div>
+            <div class="card my-5">
+
+                <form class="card-body cardbody-color p-lg-5"  method="post">
+
+                    <div class="text-center">
+                        <img src="https://cdn.pixabay.com/photo/2016/03/31/19/56/avatar-1295397__340.png"
+                             class="img-fluid profile-image-pic img-thumbnail rounded-circle my-3"
+                             width="200px" alt="profile">
+                    </div>
+
+                    <div class="mb-3">
+                        <input type="text" class="form-control" id="username" aria-describedby="emailHelp"
+                               placeholder="User Name" name="username">
+                    </div>
+                    <div class="mb-3">
+                        <input type="password" class="form-control" id="password" placeholder="password"
+                               name="password">
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-color px-5 mb-5 w-100">Login</button>
+                    </div>
+                    <div id="emailHelp" class="form-text text-center mb-5 text-dark">Not
+                        Registered? <a href="{{url_for('user_register')}}" class="text-dark fw-bold"> Create an
+                            Account</a>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+<br>
+<br>
+
+
+<!--
+Author: Colorlib
+Author URL: https://colorlib.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+<!--<!DOCTYPE html>-->
+<!--<html>-->
+<!--<head>-->
+<!--<title>Creative Colorlib SignUp Form</title>-->
+<!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
+<!--<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />-->
+<!--<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>-->
+<!--&lt;!&ndash; Custom Theme files &ndash;&gt;-->
+<!--<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />-->
+<!--&lt;!&ndash; //Custom Theme files &ndash;&gt;-->
+<!--&lt;!&ndash; web font &ndash;&gt;-->
+<!--<link href="//fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i" rel="stylesheet">-->
+<!--&lt;!&ndash; //web font &ndash;&gt;-->
+<!--</head>-->
+<!--<body>-->
+<!--	&lt;!&ndash; main &ndash;&gt;-->
+<!--	<div class="main-w3layouts wrapper">-->
+<!--		<h1>Đăng ký</h1>-->
+<!--		<div class="main-agileinfo">-->
+<!--			<div class="agileits-top">-->
+<!--				<form action="#" method="post">-->
+<!--					<input class="text" type="text" name="username" placeholder="username" required="">-->
+<!--					<input class="text email" type="email" name="email" placeholder="Email" required="">-->
+<!--					<input class="text" type="password" name="password" placeholder="Password" required="">-->
+<!--					<input class="text w3lpass" type="password" name="confirm" placeholder="Confirm Password" required="">-->
+<!--					<input type="file" class="text form-control" id="avatar" name="avatar">-->
+<!--					<input type="file" class="text form-control" id="avatar" name="avatar">-->
+<!--					<div class="wthree-text">-->
+<!--						<label class="anim">-->
+<!--							<input type="checkbox" class="checkbox" required="">-->
+<!--							<span>I Agree To The Terms & Conditions</span>-->
+<!--						</label>-->
+<!--						<div class="clear"> </div>-->
+<!--					</div>-->
+<!--					<input type="submit" value="SIGNUP">-->
+<!--				</form>-->
+<!--				<p>Don't have an Account? <a href="#"> Login Now!</a></p>-->
+<!--			</div>-->
+<!--		</div>-->
+<!--		&lt;!&ndash; copyright &ndash;&gt;-->
+<!--		<div class="colorlibcopy-agile">-->
+<!--			<p>© 2018 Colorlib Signup Form. All rights reserved | Design by <a href="https://colorlib.com/" target="_blank">Colorlib</a></p>-->
+<!--		</div>-->
+<!--		&lt;!&ndash; //copyright &ndash;&gt;-->
+<!--		<ul class="colorlib-bubbles">-->
+<!--			<li></li>-->
+<!--			<li></li>-->
+<!--			<li></li>-->
+<!--			<li></li>-->
+<!--			<li></li>-->
+<!--			<li></li>-->
+<!--			<li></li>-->
+<!--			<li></li>-->
+<!--			<li></li>-->
+<!--			<li></li>-->
+<!--		</ul>-->
+<!--	</div>-->
+<!--	&lt;!&ndash; //main &ndash;&gt;-->
+</body>
+</html>
+{% endblock %}

@@ -1,0 +1,85 @@
+<nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark justify-content-between">
+    <a class="navbar-brand" href="{{url_for('home')}}">
+        <img src="../static/image/wibu.png" width="30" height="30" class="d-inline-block align-top" alt="">
+        Shopbee</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+                <a class="nav-link" href="{{url_for('product_list')}}">Trang chủ <span class="sr-only"></span></a>
+            </li>
+
+            {%if current_user.is_authenticated %}
+<!--            <li class="nav-item">-->
+<!--                <a class="nav-link" href="{{url_for('user_signout')}}" >-->
+<!--                    {%if current_user.avatar %}-->
+<!--                        <img class="rounded-circle" src="{{current_user.avatar}}" width = "30" height="30px">-->
+<!--                    {%else%}-->
+<!--                        <img class="rounded-circle" src="{{url_for('static', filename='image/wibu.png')}}" width = "30">-->
+<!--                    {%endif%}-->
+<!--                    {{current_user.username}}-->
+<!--                </a>-->
+<!--            </li>-->
+
+<!--            <li class="nav-item">-->
+<!--                <a class="nav-link" href="{{url_for('user_signout')}}">Đăng xuất</a>-->
+<!--            </li>-->
+            {%else%}
+            <li class="nav-item">
+                <a class="nav-link" href="{{url_for('user_signin')}}">Đăng nhập</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{url_for('user_register')}}">Đăng ký</a>
+            </li>
+            {%endif%}
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">
+                    Thể loại
+                </a>
+
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    {% for cate in cates %}
+                    <a class="dropdown-item" href="/products?category_id={{cate.id}}">{{cate.name}}</a>
+                    {% endfor %}
+                </div>
+            </li>
+
+             <li class="nav-item">
+                <a class="nav-link" href="{{url_for('cart')}}">
+                    Giỏ hàng <span class ="badge badge-info cartCounter"> {{cart_stats.total_quantity}} </span>
+                </a>
+            </li>
+
+            {%if current_user.is_authenticated %}
+            <li class="nav-item">
+                <a class="nav-link" href="{{url_for('user_signout')}}" >
+                    {%if current_user.avatar %}
+                        <img class="rounded-circle" src="{{current_user.avatar}}" width = "30" height="30px">
+                    {%else%}
+                        <img class="rounded-circle" src="{{url_for('static', filename='image/wibu.png')}}" width = "30">
+                    {%endif%}
+                    {{current_user.username}}
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="{{url_for('user_signout')}}">Đăng xuất</a>
+            </li>
+            {%endif%}
+        </ul>
+    </div>
+
+    <!-- Search button -->
+
+
+    <form class="form-inline">
+
+        <input class="form-control mr-sm-2" name="keyword" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+
+</nav>

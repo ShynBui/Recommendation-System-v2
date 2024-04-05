@@ -1,0 +1,55 @@
+{% extends 'admin/base.html'%}
+
+{% block title %} Nhập hàng {% endblock %}
+
+{% block body %}
+<h1 class="text-center text-danger">Trang nhập sản phẩm</h1>
+
+<h3 class="text-danger">
+    {{quote}}
+</h3>
+
+<form class="p-3 mb-2 bg-gradient-light text-dark">
+    <div class="form-group">
+        <label for="name">Tên sản phẩm</label>
+        <input type="text" class="form-control" id="name" name="name" aria-describedby="emailHelp"
+               placeholder="Tên sách" required>
+    </div>
+    <div class="form-group">
+        <label for="mota"> Mô tả sản phẩm </label>
+        <input type="text" class="form-control" id="mota" name = "mota" placeholder="Mô tả sách">
+    </div>
+    <div class="form-group">
+        <label for="theloai">Thể loại </label>
+        <input type="text" class="form-control" id="theloai" name = "theloai" placeholder="Thể loại" required>
+    </div>
+
+    <div class="form-group">
+        <label for="gia">Giá </label>
+        <input type="text" class="form-control" id="gia" name = "gia" placeholder="Giá" required>
+    </div>
+    <div class="form-group">
+        <label for="tacgia">Chủ shop </label>
+        <input type="text" class="form-control" id="tacgia" name = "tacgia" placeholder="Tác giả" required>
+    </div>
+
+    <div class="form-group">
+        <label for="soluong">Số lượng </label>
+        <input type="number" min= {{min}} value="{{min}}" class="form-control" id="soluong" name = "soluong" placeholder="Số lượng" required>
+    </div>
+
+    <div class="form-floating mt-3 mb-3">
+        <label for="avatar">Ảnh sách</label>
+        <input type="file" class="form-control" id="avatar" name="avatar">
+    </div>
+
+    <div class="form-check">
+        <input type="checkbox" class="form-check-input" id="exampleCheck1" required>
+        <label class="form-check-label" for="exampleCheck1" required>Check me out</label>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+
+
+{%endblock%}
